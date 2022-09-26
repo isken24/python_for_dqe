@@ -17,6 +17,7 @@ Home Task 02 - Collections
 
 import random
 import string
+from collections import OrderedDict
 
 # 1.
 # creating string of lowercase letters as a source for dict keys:
@@ -31,23 +32,31 @@ lst = [{random.choice(letters): random.randint(0, 100) for _ in range(rnd_len)} 
 # Creating empty dict that will contain key-value pairs with
 # max value, according to the task:
 common_dict = {}
+# Creating empty dict that will contain key-value pairs with
+# value representing number of the dict with max value:
+positions = {}
 
 # Let's first iterate through list and then iterate through each dict.
 # For each key-value pair we will seek for same key in our common_dict.
 # If key is present in common_dict we will compare value from iterated
-# dict with the value from common_dict. If value from iterated dict is greater,
-# then it will replace value in common_dict and key in common_dict will be renamed
-# according to the task ('{key}_{i+1}').
+# dict with the value from common_dict.
 # If key form iterated dict is NOT in the common dict, then new key-value pair
 # will be added to the common_dict.
 
-for i, dct in enumerate(lst):
+for i, dct in enumerate(lst, start=1):
     for key, value in dct.items():
         if key in common_dict:
             if value > common_dict[key]:
                 common_dict[key] = value
-                common_dict[f'{key}_{i+1}'] = common_dict.pop(key)
+                positions[key] = i
         else:
             common_dict[key] = value
 
-print(common_dict)
+# Now we will rename keys according to the task.
+# If key from "positions" matches with key from "common_dict"
+# then new kay-value pair with appropriate key naming will be created and
+# old key-value pair will be removed by using pop() method.
+for key, value in positions.items():
+    common_dict[f'{key}_{value}'] = common_dict.pop(key)
+
+print(dict(sorted(common_dict.items())))
