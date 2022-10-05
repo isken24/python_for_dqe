@@ -40,16 +40,15 @@ for index, row in enumerate(re.split('\n', abstract)):
     result.append([])                       # For each line we use separate element of the list.
     punctuation_mark = row[-1]              # Punctuation mark to be added to each sentence (':' or '.')
     if index > 0 and not row.isspace():     # All sentence except first should be moved to the right.
-        result[index].append('  ')
+        result[index].append(' ')
     for sentence in re.split('\. ', row):   # Capitalizing sentences and adding last word to sentence_from_last_words.
         sentence = sentence.strip(".: ")
         result[index].append(f'{sentence.capitalize()}{punctuation_mark}')
         sentence_from_last_words.append(sentence.split()[-1])
 
 # Convert result to string:
-for row in result:
-    for sentence in row:
-        string_result += sentence
+result = '\n'.join([(' '.join([elem for elem in row])) for row in result])
+
 
 
 """ 
@@ -58,13 +57,12 @@ for row in result:
 """
 
 
-def count_number_of_spaces(string_result: str):
-    space_counter = len(re.findall(r'[\s]', string_result))
+def count_number_of_spaces(result: str):
+    space_counter = len(re.findall(r'[\s]', result))
     return space_counter
 
 
 if __name__ == '__main__':
-    for line in result:
-        print(*line)
+    print(result)
     print("Sentence from last words:", *sentence_from_last_words)
-    print(f"Number of Spaces : {count_number_of_spaces(string_result)}.")
+    print(f"Number of Spaces : {count_number_of_spaces(result)}.")
