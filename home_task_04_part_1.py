@@ -48,3 +48,4 @@ def create_common_dict(raw_data: list):
 
 if __name__ == "__main__":
     print(create_common_dict(create_source_data()))
+
