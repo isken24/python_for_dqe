@@ -56,4 +56,3 @@ if __name__ == '__main__':
     print(normalized_abstract)
     print(f'Sentence from last words: {create_sentence_from_last_words(normalized_abstract)}')
     print(f'Number of spaces in text: {count_number_of_spaces(normalized_abstract)}')
-
