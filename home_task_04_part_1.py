@@ -19,13 +19,11 @@ import random
 import string
 
 
-letters = string.ascii_lowercase
-rnd_len_1 = random.randint(2, 10)
-rnd_len_2 = random.randint(2, 10)
-
-
 def create_source_data():
-    source_data = [{random.choice(letters): random.randint(0, 100) for _ in range(rnd_len_1)} for _ in range(rnd_len_2)]
+    LETTERS = string.ascii_lowercase
+    rnd_len_1 = random.randint(2, 10)
+    rnd_len_2 = random.randint(2, 10)
+    source_data = [{random.choice(LETTERS): random.randint(0, 100) for _ in range(rnd_len_1)} for _ in range(rnd_len_2)]
     return source_data
 
 

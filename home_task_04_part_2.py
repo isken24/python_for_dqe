@@ -1,6 +1,6 @@
 import re
 
-abstract = """homEwork:
+ABSTRACT = """homEwork:
 
   tHis iz your homeWork, copy these Text to variable.
 
@@ -16,52 +16,32 @@ abstract = """homEwork:
 
   last iz TO calculate nuMber OF Whitespace characteRS in this Tex. caREFULL, not only Spaces, but ALL whitespaces. I got 87."""
 
-text_without_empty_lines = ''
-text_without_wrong_words = ''
-sentence_from_last_words = ''
-converted_result = ''
-result = []
 
+def text_normalization(text: str) -> str:
+    delete_blank_lines_and_fix_grammar = text.replace('\n\n\n\n', '\n').replace('\n\n', '\n').replace(' iz', ' is')
 
-def remove_empty_lines(text: str) -> str:
-    global text_without_empty_lines
-    text_without_empty_lines = text.replace('\n\n\n\n', '\n').replace('\n\n', '\n')
-    return text_without_empty_lines
+    processed_text = []
 
-
-def replace_wrong_words(text: str, wrong_word, proper_word) -> str:
-    global text_without_wrong_words
-    text_without_wrong_words = text.lower().replace(wrong_word, proper_word)
-    return text_without_wrong_words
-
-
-def capitalize_sentences_in_text(text: str) -> list:
-    global result
-    for index, row in enumerate(re.split('\n', text)):
-        result.append([])                       # For each line we use separate element of the list.
-        punctuation_mark = row[-1]              # Punctuation mark to be added to each sentence (':' or '.')
-        if index > 0 and not row.isspace():     # All sentence except first should be moved to the right.
-            result[index].append(' ')
-        for sentence in re.split('\. ', row):   # Capitalizing sentences.
+    for index, row in enumerate(re.split('\n', delete_blank_lines_and_fix_grammar)):
+        processed_text.append([])                       # For each line we use separate element of the list.
+        punctuation_mark = row[-1]                      # Punctuation mark to be added to each sentence (':' or '.')
+        if index > 0 and not row.isspace():             # All sentence except first should be moved to the right.
+            processed_text[index].append(' ')
+        for sentence in re.split('\. ', row):           # Capitalizing sentences.
             sentence = sentence.strip(".: ")
-            result[index].append(f'{sentence.capitalize()}{punctuation_mark}')
-    return result
+            processed_text[index].append(f'{sentence.capitalize()}{punctuation_mark}')
+
+    normalized_text = '\n'.join([(' '.join([elem for elem in row])) for row in processed_text])
+    return normalized_text
 
 
-def create_sentence_from_last_words(text: list) -> str:
-    global sentence_from_last_words
+def create_sentence_from_last_words(converted_result: str) -> str:
     last_words = []
-    for row in text:
-        for sentence in row:
+    for row in re.split('\n', converted_result):
+        for sentence in re.split('\. ', row):
             last_words.append(sentence.strip('.: ').split(' ')[-1])
     sentence_from_last_words = ' '.join(last_words)
     return sentence_from_last_words
-
-
-def convert_result_to_string(text: list) -> str:
-    global converted_result
-    converted_result = '\n'.join([(' '.join([elem for elem in row])) for row in text])
-    return converted_result
 
 
 def count_number_of_spaces(text: str):
@@ -69,12 +49,10 @@ def count_number_of_spaces(text: str):
     return space_counter
 
 
+normalized_abstract = text_normalization(ABSTRACT)
+
+
 if __name__ == '__main__':
-    remove_empty_lines(abstract)
-    replace_wrong_words(text_without_empty_lines, ' iz', ' is')
-    capitalize_sentences_in_text(text_without_wrong_words)
-    create_sentence_from_last_words(result)
-    convert_result_to_string(result)
-    print(converted_result)
-    print(f'Number of spaces in text: {count_number_of_spaces(converted_result)}')
-    print(f'Sentence from last words: {sentence_from_last_words}')
+    print(normalized_abstract)
+    print(f'Sentence from last words: {create_sentence_from_last_words(normalized_abstract)}')
+    print(f'Number of spaces in text: {count_number_of_spaces(normalized_abstract)}')
