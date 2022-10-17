@@ -18,13 +18,11 @@ from random import randrange
 
 
 class News:
-    header = 'News -------------------------\n'
-    end_of_record = '------------------------------\n\n'
 
-    def __init__(self):
-        self.publication_date = datetime.now()
-        self.__text_of_news = ''
-        self.__city = ''
+    def __init__(self, text_of_news, city):
+        self.publication_date = datetime.now().strftime("%Y/%m/%d %H:%M")
+        self.__text_of_news = text_of_news
+        self.__city = city
 
     @property
     def text_of_news(self):
@@ -42,18 +40,19 @@ class News:
     def city(self, city):
         self.__city = city
 
-    def add_timestamp(self):
-        timestamp = self.publication_date.strftime("%Y/%m/%d %H:%M")
-        return timestamp
+    def create_news_publication(self):
+        news_publication = f'News___________________________________\n' \
+                           f'{self.text_of_news}\n' \
+                           f'{self.city}, {self.publication_date}\n' \
+                           f'_______________________________________\n\n'
+        return news_publication
 
 
 class PrivateAd:
-    header = 'Private Ad ------------------\n'
-    end_of_record = '------------------------------\n\n'
 
-    def __init__(self):
-        self.__advertisement_text = ''
-        self.__expiration_date = date.today()
+    def __init__(self, advertisement_text, expiration_date):
+        self.__advertisement_text = advertisement_text
+        self.__expiration_date = expiration_date
 
     @property
     def advertisement_text(self):
@@ -76,6 +75,13 @@ class PrivateAd:
         number_of_days_left = number_of_days_left.days
         return number_of_days_left
 
+    def create_ad_publication(self):
+        ad_publication = f'Private ad_____________________________\n' \
+                           f'{self.advertisement_text}\n' \
+                           f'Actual until: {self.expiration_date}, {self.number_of_days_left()} days left\n' \
+                           f'_______________________________________\n\n'
+        return ad_publication
+
 
 class Greetings:
     header = 'Greeting in foreign language--\n'
@@ -86,54 +92,51 @@ class Greetings:
     number_of_languages = len(GREETINGS)
 
     def __init__(self):
-        randomizer = randrange(Greetings.number_of_languages)
-        self.greeting = Greetings.GREETINGS[randomizer]
+        greeting_picker = randrange(Greetings.number_of_languages)
+        self.greeting = Greetings.GREETINGS[greeting_picker]
 
-    def get_greeting(self):
-        return self.greeting
+    def create_greeting(self):
+        greeting_publication = f'Greeting_______________________________\n' \
+                         f'{self.greeting}\n' \
+                         f'_______________________________________\n\n'
+        return greeting_publication
 
 
 def create_news():
-    record = News()
-    record.text_of_news = input('Enter text of the news: ')
-    record.city = input('Enter city: ')
+    text_of_news = input('Enter text of the news: ')
+    city = input('Enter city: ')
+
+    record = News(text_of_news, city)
 
     with open('hw_05_result.txt', 'a') as result:
-        result.write(f'{record.header}'
-                     f'{record.text_of_news}\n'
-                     f'{record.city}, {record.add_timestamp()}\n'
-                     f'{record.end_of_record}')
+        result.write(record.create_news_publication())
 
 
 def create_private_ad():
-    record = PrivateAd()
-    record.advertisement_text = input('Enter text of the Private Ad: ')
+    advertisement_text = input('Enter text of the Private Ad: ')
+
     while True:
         try:
-            record.expiration_date = datetime.strptime(input('Enter expiration date (dd/mm/yyyy):'), '%d/%m/%Y')
-            record.expiration_date = record.expiration_date.date()
-            if record.expiration_date < date.today():
+            expiration_date = datetime.strptime(input('Enter expiration date (dd/mm/yyyy):'), '%d/%m/%Y')
+            expiration_date = expiration_date.date()
+            if expiration_date < date.today():
                 print("Enter valid date. We don't have timemachine yet.")
-                continue
             else:
                 break
         except ValueError as e:
             print(f'Input value must be numerical.\n{e}')
-            continue
+
+    record = PrivateAd(advertisement_text, expiration_date)
 
     with open('hw_05_result.txt', 'a') as result:
-        result.write(f'{record.header}'
-                     f'{record.advertisement_text}\n'
-                     f'Actual until: {record.expiration_date}, {record.number_of_days_left()} days left'
-                     f'\n{record.end_of_record}')
+        result.write(record.create_ad_publication())
 
 
 def add_greeting():
     record = Greetings()
+
     with open('hw_05_result.txt', 'a') as result:
-        result.write(f'{record.header}'
-                     f'{record.get_greeting()}'
-                     f'\n{record.end_of_record}')
+        result.write(record.create_greeting())
 
 
 def main():
@@ -142,23 +145,18 @@ def main():
             print('Choose type of record: 1 - News, 2 - Private Ad, 3 - Random Fact, 0 - EXIT PROGRAM')
             x = int(input('Enter single digit 0-3:'))
             if x == 0:
-                print('Good buy!')
+                print('Goodbye!')
                 break
             elif x == 1:
                 create_news()
-                continue
             elif x == 2:
                 create_private_ad()
-                continue
             elif x == 3:
                 add_greeting()
-                continue
             else:
-                print(f'Input value must be single digit from 0 to 3!')
-                continue
+                print('Number is out of scope. Choose correct number from menu.')
         except ValueError as e:
             print(f'Input value must be single digit from 0 to 3!\n{e}')
-            continue
 
 
 if __name__ == '__main__':
