@@ -17,75 +17,45 @@ from datetime import datetime, date
 from random import randrange
 
 
-class News:
+class Publication:
+    def __init__(self, text_of_publication):
+        self.text_of_publication = text_of_publication
 
-    def __init__(self, text_of_news, city):
+
+class News(Publication):
+    def __init__(self, text_of_publication, city):
+        super().__init__(text_of_publication)
         self.publication_date = datetime.now().strftime("%Y/%m/%d %H:%M")
-        self.__text_of_news = text_of_news
-        self.__city = city
+        self.city = city
 
-    @property
-    def text_of_news(self):
-        return self.__text_of_news
-
-    @text_of_news.setter
-    def text_of_news(self, text_of_news):
-        self.__text_of_news = text_of_news
-
-    @property
-    def city(self):
-        return self.__city
-
-    @city.setter
-    def city(self, city):
-        self.__city = city
 
     def create_news_publication(self):
         news_publication = f'News___________________________________\n' \
-                           f'{self.text_of_news}\n' \
+                           f'{self.text_of_publication}\n' \
                            f'{self.city}, {self.publication_date}\n' \
                            f'_______________________________________\n\n'
         return news_publication
 
 
-class PrivateAd:
+class PrivateAd(Publication):
+    def __init__(self, text_of_publication, expiration_date):
+        super().__init__(text_of_publication)
+        self.expiration_date = expiration_date
 
-    def __init__(self, advertisement_text, expiration_date):
-        self.__advertisement_text = advertisement_text
-        self.__expiration_date = expiration_date
-
-    @property
-    def advertisement_text(self):
-        return self.__advertisement_text
-
-    @advertisement_text.setter
-    def advertisement_text(self, advertisement_text):
-        self.__advertisement_text = advertisement_text
-
-    @property
-    def expiration_date(self):
-        return self.__expiration_date
-
-    @expiration_date.setter
-    def expiration_date(self, expiration_date):
-        self.__expiration_date = expiration_date
-
-    def number_of_days_left(self):
-        number_of_days_left = self.__expiration_date - date.today()
+    def get_number_of_days_left(self):
+        number_of_days_left = self.expiration_date - date.today()
         number_of_days_left = number_of_days_left.days
         return number_of_days_left
 
     def create_ad_publication(self):
         ad_publication = f'Private ad_____________________________\n' \
-                           f'{self.advertisement_text}\n' \
-                           f'Actual until: {self.expiration_date}, {self.number_of_days_left()} days left\n' \
+                           f'{self.text_of_publication}\n' \
+                           f'Actual until: {self.expiration_date}, {self.get_number_of_days_left()} days left\n' \
                            f'_______________________________________\n\n'
         return ad_publication
 
 
 class Greetings:
-    header = 'Greeting in foreign language--\n'
-    end_of_record = '------------------------------\n\n'
     GREETINGS = ['Spanish: hola', 'French: bonjour', 'German: guten tag', 'Italian: salve',
                  'Chinese: nin hao', 'Portuguese: ola', 'Arabic: asalaam alaikum', 'Japanese: konnichiwa',
                  'Korean: anyoung haseyo', 'Russian: Zdravstvuyte']
@@ -103,12 +73,12 @@ class Greetings:
 
 
 def create_news():
-    text_of_news = input('Enter text of the news: ')
+    text_of_publication = input('Enter text of the news: ')
     city = input('Enter city: ')
 
-    record = News(text_of_news, city)
+    record = News(text_of_publication, city)
 
-    with open('hw_05_result.txt', 'a') as result:
+    with open('hw_05_result_1.txt', 'a') as result:
         result.write(record.create_news_publication())
 
 
@@ -128,21 +98,21 @@ def create_private_ad():
 
     record = PrivateAd(advertisement_text, expiration_date)
 
-    with open('hw_05_result.txt', 'a') as result:
+    with open('hw_05_result_1.txt', 'a') as result:
         result.write(record.create_ad_publication())
 
 
 def add_greeting():
     record = Greetings()
 
-    with open('hw_05_result.txt', 'a') as result:
+    with open('hw_05_result_1.txt', 'a') as result:
         result.write(record.create_greeting())
 
 
 def main():
     while True:
         try:
-            print('Choose type of record: 1 - News, 2 - Private Ad, 3 - Random Fact, 0 - EXIT PROGRAM')
+            print('Choose type of record: 1 - News, 2 - Private Ad, 3 - Random Greeting, 0 - EXIT PROGRAM')
             x = int(input('Enter single digit 0-3:'))
             if x == 0:
                 print('Goodbye!')
