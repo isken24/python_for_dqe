@@ -13,12 +13,14 @@ from datetime import datetime, date
 from random import randrange
 import os
 import logging
+
+
 logging.basicConfig(level=logging.INFO, filename="../hw_06/hw_06.log", filemode="a",
                     format="%(asctime)s %(message)s")
 
 
 class FileReader:
-    def __init__(self, file_path):
+    def __init__(self, file_path=None):
         if file_path:
             self.path = file_path       # Alternative file path: '../hw_06/alternative_input.txt'
         else:
