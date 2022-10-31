@@ -1,0 +1,5 @@
+News: Everything is new here. Spb;
+Ad: Chairs FOR sale. 18/11/2022;
+Ad: ad with wrong date format. 18-11-2022;
+Ad: ad from the past times.  01/01/1990;
+Greeting;
