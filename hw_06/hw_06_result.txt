@@ -1,0 +1,48 @@
+News___________________________________
+Exiting news. And even more exiting news
+Tomsk., 2022/10/31 10:51
+_______________________________________
+
+Private ad_____________________________
+Very good advertisement.
+Actual until: 2022-11-18, 18 days left
+_______________________________________
+
+Private ad_____________________________
+Ad with wrong date format.
+Actual until: 2022-10-31, 0 days left
+_______________________________________
+
+Private ad_____________________________
+Ad from the past times.
+Actual until: 2022-10-31, 0 days left
+_______________________________________
+
+Greeting_______________________________
+French: bonjour
+_______________________________________
+
+News___________________________________
+Everything is new here
+Spb., 2022/10/31 10:52
+_______________________________________
+
+Private ad_____________________________
+Chairs for sale.
+Actual until: 2022-11-18, 18 days left
+_______________________________________
+
+Private ad_____________________________
+Ad with wrong date format.
+Actual until: 2022-10-31, 0 days left
+_______________________________________
+
+Private ad_____________________________
+Ad from the past times.
+Actual until: 2022-10-31, 0 days left
+_______________________________________
+
+Greeting_______________________________
+Japanese: konnichiwa
+_______________________________________
+
