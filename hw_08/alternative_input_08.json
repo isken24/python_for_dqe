@@ -1,0 +1,6 @@
+[{"news": "Everything is new here. Spb"},
+  {"ad": "Chairs FOR sale. 18/11/2022"},
+  {"ad":  "ad with wrong date format. 18-11-2022"},
+  {"ad": "ad from the past times.  01/01/1990"},
+  {"greeting" : ""},
+  {"wrong_content": "This message shouldn't be published!"}]

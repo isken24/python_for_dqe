@@ -1,0 +1,7 @@
+[{"news": "Great News. Astana"},
+  {"news": "Even more exiting news. Seoul"},
+  {"ad": "Very GOOD advertisement. 18/11/2022"},
+  {"ad":  "aD With Wrong Date format. 18-10-2022"},
+  {"ad": "aD from tHe Past times. 18/10/1990"},
+  {"greeting" : ""},
+  {"wrong_content": "This message shouldn't be published!"}]
