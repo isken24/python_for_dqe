@@ -1,18 +1,21 @@
-""" Home Task 7:
+"""
+Home Task 7:
 Calculate number of words_count and letters from previous Homeworks 5/6 output test file.
 Create two csv:
 1.word-count (all words_count are preprocessed in lowercase)
-2.letter, cout_all, count_uppercase, percentage (add header, spacecharacters are not included)
-CSVs should be recreated each time new record added."""
+2.letter, count_all, count_uppercase, percentage (add header, space characters are not included)
+CSVs should be recreated each time new record added.
+"""
 
 import csv
+import re
 
 
 class FileReader:
     def __init__(self, filepath):
         self.filepath = filepath
         with open(self.filepath, 'r') as input_file:
-            self.content = input_file.read()
+            self.content = input_file.read().replace('_', '').replace('\n\n', '')
 
 
 def dict_to_list_converter(input_data: dict) -> list:
@@ -25,103 +28,60 @@ def dict_to_list_converter(input_data: dict) -> list:
 class Counter:
     def __init__(self, text: str):
         self.text = text
-        self.total_number_of_letters = 0
-        self.words_count = {}
-        self.letters_count = {}
-        self.upper_letters_count = {}
-        self.words_counter()
-        self.letters_counter()
-        self.upper_letters_counter()
+        self.total_number_of_letters = len(re.sub('[^a-zA-Z]+', '', self.text))
+        self.words_count = self.words_counter()
+        self.letters_count, self.upper_letters_count = self.letters_counter()
+        self.data_for_letters_count_csv = self.format_data()
 
-    def words_counter(self) -> dict:
-        for line in self.text.lower().split('\n'):
-            for word in line.split():
-                word = word.strip('., ')
-                if word.isalpha():
-                    if word not in self.words_count:
-                        self.words_count[word] = 1
-                    else:
-                        self.words_count[word] += 1
-        return self.words_count
+    def words_counter(self) -> list:
+        words_count = {}
+        for word in self.text.lower().split():
+            word = word.strip('.,')
+            if word.isalpha():
+                words_count[word] = words_count.get(word, 0) + 1
+        return dict_to_list_converter(words_count)
 
-    def letters_counter(self) -> dict:
-        for line in self.text.lower().split('\n'):
-            for word in line.split():
-                word = word.strip('., ')
-                if word.isalpha():
-                    for letter in word:
-                        if letter not in self.letters_count:
-                            self.letters_count[letter] = 1
-                            self.total_number_of_letters += 1
-                        else:
-                            self.letters_count[letter] += 1
-                            self.total_number_of_letters += 1
-        return self.letters_count
-
-    def upper_letters_counter(self) -> dict:
-        for line in self.text.split('\n'):
-            for word in line.split():
-                word = word.strip('., ')
-                if word.isalpha():
-                    for letter in word:
-                        if letter.isupper():
-                            if letter not in self.upper_letters_count:
-                                self.upper_letters_count[letter] = 1
-                            else:
-                                self.upper_letters_count[letter] += 1
-        return self.upper_letters_count
-
-
-class DataFormatterForLettersCSV:
-    def __init__(self, letters_count, total_number_of_letters, upper_letters_count):
-        self.upper_letters_count = upper_letters_count
-        self.letters_count = letters_count
-        self.total_number_of_letters = total_number_of_letters
-        self.formatted_data = []
-        self.format_data()
+    def letters_counter(self):
+        letters_count = {}
+        upper_letters_count = {}
+        all_letters_from_text = re.sub('[^a-zA-Z]+', '', self.text)
+        for letter in all_letters_from_text:
+            if letter.isupper():
+                upper_letters_count[letter] = upper_letters_count.get(letter, 0) + 1
+                letters_count[letter.lower()] = letters_count.get(letter.lower(), 0) + 1
+            else:
+                letters_count[letter] = letters_count.get(letter, 0) + 1
+        return letters_count, upper_letters_count
 
     def format_data(self):
+        data_for_letter_count_csv = []
         for key, value in self.upper_letters_count.items():
             key = key.lower()
             if key in self.letters_count:
-                letter_percentage = round(self.letters_count[key] / self.total_number_of_letters * 100, 3)
-                self.formatted_data.append([key, self.letters_count[key], value, letter_percentage])
+                letter_percentage = round(self.letters_count[key] / self.total_number_of_letters * 100, 1)
+                data_for_letter_count_csv.append([key, self.letters_count[key], value, letter_percentage])
                 del self.letters_count[key]
         for key, value in self.letters_count.items():
-            letter_percentage = round(self.letters_count[key] / self.total_number_of_letters * 100, 3)
-            self.formatted_data.append([key, self.letters_count[key], 0, letter_percentage])
-            self.formatted_data = sorted(self.formatted_data)
-        return self.formatted_data
+            letter_percentage = round(self.letters_count[key] / self.total_number_of_letters * 100, 1)
+            data_for_letter_count_csv.append([key, self.letters_count[key], 0, letter_percentage])
+        return sorted(data_for_letter_count_csv)
 
-
-class WriterCSV:
-
-    def write_word_count_csv(self, input_data: list):
+    def write_words_count_csv(self):
         with open(f'hw_07_word_count.csv', 'w', encoding='UTF8', newline='') as csv_file:
             writer = csv.writer(csv_file, delimiter='-')
-            writer.writerows(input_data)
+            writer.writerows(self.words_count)
 
-    def write_letter_count_csv(self, input_data: list):
+    def write_letter_count_csv(self):
         with open('hw_07_letter_count.csv', 'w', encoding='UTF8', newline='') as csv_file:
             fieldnames = ['letter', "count_all", "count_uppercase", "percentage"]
             writer = csv.writer(csv_file, delimiter=',')
             writer.writerows([fieldnames])
-            writer.writerows(input_data)
+            writer.writerows(self.data_for_letters_count_csv)
 
 
 if __name__ == '__main__':
-    source_file = FileReader('../hw_06/hw_06_result.txt')
-    content = source_file.content.replace('_', '').replace('\n\n', '')
+    content = FileReader('../hw_06/hw_06_result.txt').content
 
     counter = Counter(content)
-    words_count = dict_to_list_converter(counter.words_count)
-    letters_count = counter.letters_count
-    upper_letters_count = counter.upper_letters_count
-    total_number_of_letters = counter.total_number_of_letters
-
-    data_for_letters_csv = DataFormatterForLettersCSV(letters_count, total_number_of_letters, upper_letters_count)
-    data_to_publish_in_letters_csv = data_for_letters_csv.formatted_data
-
-    writer_csv = WriterCSV()
-    writer_for_word_count = writer_csv.write_word_count_csv(words_count)
-    writer_for_letters_count = writer_csv.write_letter_count_csv(data_to_publish_in_letters_csv)
+    counter.write_words_count_csv()
+    counter.write_letter_count_csv()
