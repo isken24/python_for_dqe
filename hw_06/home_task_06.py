@@ -94,6 +94,17 @@ def create_news(raw_record):
         result.write(record.create_news_publication())
 
 
+def get_expiration_date(expiration_date: str):
+    try:
+        expiration_date = datetime.strptime(expiration_date, '%d/%m/%Y')
+        expiration_date = expiration_date.date()
+        if expiration_date < date.today():
+            expiration_date = date.today()
+    except ValueError as e:
+        expiration_date = date.today()
+    return expiration_date
+
+
 def create_private_ad(raw_record):
     raw_record = raw_record.split('. ')
     advertisement_text = text_normalization('. '.join(raw_record[:-1]))

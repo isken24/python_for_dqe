@@ -5,38 +5,49 @@ Expand previous Homework 5/6/7 with additional class, which allow to provide rec
 3.Remove file if it was successfully processed"""
 
 
-from home_task_06 import create_news, create_private_ad, add_greeting
+from home_task_04_part_2 import text_normalization
+from hw_06.home_task_06 import News, PrivateAd, Greetings, get_expiration_date
 import os
 import logging
 import json
 
 
-class JSONReader:
-    def __init__(self, file_path=None):
-        if file_path:
-            self.path = file_path       # Alternative file path: '../hw_08/alternative_input_08.json'
-        else:
-            self.path = '../hw_08/input_08.json'
-        with open(self.path, 'r') as source_file:
+class JSONParser:
+    def __init__(self, filepath='../hw_08/input_08.json'):
+        self.filepath = filepath
+        self.read_json()
+        self.create_feed_from_json()
+
+    def read_json(self):
+        with open(self.filepath, 'r') as source_file:
             self.content = json.load(source_file)
+        return self.content
 
-
-def parse_json(input_file):
-    input_data = input_file.content
-    for message in input_data:
-        record_type = message['record_type'].lower()
-        raw_record = message['content']
-        if record_type == "news":
-            create_news(raw_record)
-        elif record_type == "ad":
-            create_private_ad(raw_record)
-        elif record_type == "greeting":
-            add_greeting()
-        else:
-            logging.info(f"Wrong type of record: {record_type}/{raw_record}.")
-    os.remove(input_file.path)
+    def create_feed_from_json(self):
+        feed_path = f'{os.getcwd()}/result.txt'
+        with open(feed_path, 'a') as feed:
+            for record in self.content:
+                record_type = record['record_type'].lower()
+                record_text = text_normalization(record['record_text'])
+                if record_type == 'news':
+                    city = text_normalization(record['city'])
+                    news = News(record_text, city)
+                    feed.write(news.create_news_publication())
+                elif record_type == "ad":
+                    expiration_date = get_expiration_date(record['expiration_date'])
+                    ad = PrivateAd(record_text, expiration_date)
+                    feed.write(ad.create_ad_publication())
+                elif record_type == "greeting":
+                    greeting = Greetings()
+                    feed.write(greeting.create_greeting())
+                else:
+                    logging.info(f"Wrong type of record: {record_type}/{record_text}.")
+            os.remove(self.filepath)
 
 
 if __name__ == '__main__':
-    input_file = JSONReader(input('Provide path to the input file:'))
-    parse_json(input_file)
+    alternative_filepath = input("Specify alternative filepath or press Enter:")     # Alternative filepath: '../hw_08/alt_input_08.json'
+    if alternative_filepath:
+        JSONParser(alternative_filepath)
+    else:
+        JSONParser()
