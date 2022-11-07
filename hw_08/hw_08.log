@@ -7,3 +7,9 @@
 2022-11-04 11:05:34,598 Wrong date format at Record: Ad with wrong date format.
 2022-11-04 11:05:34,598 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
 2022-11-04 11:05:34,614 Wrong type of record: {'wrong_content': "This message shouldn't be published!"}.
+2022-11-07 10:53:03,336 Wrong date format at Record: Ad with wrong date format.
+2022-11-07 10:53:03,336 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-07 10:53:03,337 Wrong type of record: {'wrong_content': "This message shouldn't be published!"}.
+2022-11-07 10:53:18,640 Wrong date format at Record: Ad with wrong date format.
+2022-11-07 10:53:18,640 Wrong date format at Record: Ad from the past times.
+2022-11-07 10:53:18,640 Wrong type of record: {'wrong_content': "This message shouldn't be published!"}.

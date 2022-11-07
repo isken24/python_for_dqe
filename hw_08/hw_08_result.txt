@@ -1,92 +1,53 @@
 News___________________________________
 Great news
-Astana., 2022/11/04 10:57
+Astana., 2022/11/07 10:53
 _______________________________________
 
 News___________________________________
 Even more exiting news
-Seoul., 2022/11/04 10:57
+Seoul., 2022/11/07 10:53
 _______________________________________
 
 Private ad_____________________________
 Very good advertisement.
-Actual until: 2022-11-18, 14 days left
+Actual until: 2022-11-18, 11 days left
 _______________________________________
 
 Private ad_____________________________
 Ad with wrong date format.
-Actual until: 2022-11-04, 0 days left
+Actual until: 2022-11-07, 0 days left
 _______________________________________
 
 Private ad_____________________________
 Ad from the past times.
-Actual until: 2022-11-04, 0 days left
+Actual until: 2022-11-07, 0 days left
 _______________________________________
 
 Greeting_______________________________
-Japanese: konnichiwa
+French: bonjour
 _______________________________________
 
 News___________________________________
 Everything is new here
-Spb., 2022/11/04 11:03
+Spb., 2022/11/07 10:53
 _______________________________________
 
 Private ad_____________________________
 Chairs for sale.
-Actual until: 2022-11-18, 14 days left
+Actual until: 2022-11-18, 11 days left
 _______________________________________
 
 Private ad_____________________________
 Ad with wrong date format.
-Actual until: 2022-11-04, 0 days left
+Actual until: 2022-11-07, 0 days left
 _______________________________________
 
 Private ad_____________________________
 Ad from the past times.
-Actual until: 2022-11-04, 0 days left
+Actual until: 2022-11-07, 0 days left
 _______________________________________
 
 Greeting_______________________________
-Arabic: asalaam alaikum
-_______________________________________
-
-News___________________________________
-Great news
-Astana., 2022/11/04 11:04
-_______________________________________
-
-News___________________________________
-Even more exiting news
-Seoul., 2022/11/04 11:04
-_______________________________________
-
-News___________________________________
-Great news
-Astana., 2022/11/04 11:05
-_______________________________________
-
-News___________________________________
-Even more exiting news
-Seoul., 2022/11/04 11:05
-_______________________________________
-
-Private ad_____________________________
-Very good advertisement.
-Actual until: 2022-11-18, 14 days left
-_______________________________________
-
-Private ad_____________________________
-Ad with wrong date format.
-Actual until: 2022-11-04, 0 days left
-_______________________________________
-
-Private ad_____________________________
-Ad from the past times.
-Actual until: 2022-11-04, 0 days left
-_______________________________________
-
-Greeting_______________________________
-Portuguese: ola
+Japanese: konnichiwa
 _______________________________________
 
