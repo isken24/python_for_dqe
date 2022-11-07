@@ -122,17 +122,16 @@ class JSONReader:
 
 def parse_json(input_data):
     for message in input_data:
-        for key, value in message.items():
-            type_of_record = key.lower()
-            raw_record = value
-            if type_of_record == "news":
-                create_news(raw_record)
-            elif type_of_record == "ad":
-                create_private_ad(raw_record)
-            elif type_of_record == "greeting":
-                add_greeting()
-            else:
-                logging.info(f"Wrong type of record: {message}.")
+        record_type = message['record_type'].lower()
+        raw_record = message['content']
+        if record_type == "news":
+            create_news(raw_record)
+        elif record_type == "ad":
+            create_private_ad(raw_record)
+        elif record_type == "greeting":
+            add_greeting()
+        else:
+            logging.info(f"Wrong type of record: {record_type}/{raw_record}.")
     os.remove(input_file.path)
 
 

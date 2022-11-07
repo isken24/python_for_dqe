@@ -1,0 +1,7 @@
+[{"record_type": "news", "content": "Great News. Astana"},
+  {"record_type": "news", "content": "Even more exiting news. Seoul"},
+  {"record_type":"ad", "content": "Very GOOD advertisement. 18/11/2022"},
+  {"record_type":"ad", "content":  "aD With Wrong Date format. 18-10-2022"},
+  {"record_type":"ad", "content": "aD from tHe Past times. 18/10/1990"},
+  {"record_type": "greeting", "content": ""},
+  {"record_type":"wrong_content", "content" : "This message shouldn't be published!"}]
