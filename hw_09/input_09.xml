@@ -1,0 +1,30 @@
+<records>
+    <record>
+        <record_type>News</record_type>
+        <record_text> Exiting news. and even MORE exiting news</record_text>
+        <city>Tomsk</city>
+    </record>
+    <record>
+        <record_type>Ad</record_type>
+        <record_text>Very GOOD advertisement</record_text>
+        <expiration_date>18/11/2022</expiration_date>>
+    </record>
+    <record>
+        <record_type>Ad</record_type>
+        <record_text>aD With Wrong Date format</record_text>
+        <expiration_date>18-10-2022</expiration_date>>
+    </record>
+    <record>
+        <record_type>Ad</record_type>
+        <record_text>aD from tHe Past times</record_text>
+        <expiration_date>18/10/1990</expiration_date>>
+    </record>
+    <record>
+        <record_type>Greeting</record_type>
+        <record_text></record_text>
+    </record>
+    <record>
+        <record_type>Mistake</record_type>
+        <record_text>I'm here by mistake</record_text>
+    </record>
+</records>
