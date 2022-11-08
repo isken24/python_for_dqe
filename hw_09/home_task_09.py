@@ -7,7 +7,7 @@ Expand previous Homework 5/6/7/8 with additional class, which allow to provide r
 """
 
 
-from home_task_04_part_2 import normalize_text
+from hw_04.home_task_04_part_2 import normalize_text
 from hw_06.home_task_06 import News, PrivateAd, Greetings, get_expiration_date
 import os
 import xml.etree.ElementTree as ET

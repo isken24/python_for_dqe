@@ -8,7 +8,7 @@ Expand previous Homework 5 with additional class, which allow to provide records
 4.Apply case normalization functionality form Homework 3/4
 """
 
-from home_task_04_part_2 import text_normalization
+from hw_04.home_task_04_part_2 import text_normalization
 from datetime import datetime, date
 from random import randrange
 import os

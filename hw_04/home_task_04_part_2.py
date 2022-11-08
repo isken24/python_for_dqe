@@ -44,7 +44,6 @@ def normalize_text(text:str) ->str:
         return normalized_text
 
 
-
 def create_sentence_from_last_words(converted_result: str) -> str:
     last_words = []
     for row in re.split('\n', converted_result):
