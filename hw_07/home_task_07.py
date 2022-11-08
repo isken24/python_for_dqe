@@ -11,7 +11,7 @@ import csv
 import re
 
 
-def file_reader(filepath):
+def file_reader(filepath) -> str:
     with open(filepath, 'r') as input_file:
         content = input_file.read().replace('_', '').replace('\n\n', '')
     return content
@@ -25,16 +25,15 @@ class Counter:
         self.letters_counter()
         self.format_data_for_letters_count_csv()
 
-    def words_counter(self) -> list:
+    def words_counter(self) -> None:
         self.words_count = {}
         for word in self.text.lower().split():
             word = word.strip('.,')
             if word.isalpha():
                 self.words_count[word] = self.words_count.get(word, 0) + 1
         self.words_count = list(self.words_count.items())
-        return self.words_count
 
-    def letters_counter(self) -> tuple:
+    def letters_counter(self) -> None:
         self.letters_count = {}
         self.upper_letters_count = {}
         all_letters_from_text = re.sub('[^a-zA-Z]+', '', self.text)
@@ -44,9 +43,8 @@ class Counter:
                 self.letters_count[letter.lower()] = self.letters_count.get(letter.lower(), 0) + 1
             else:
                 self.letters_count[letter] = self.letters_count.get(letter, 0) + 1
-        return self.letters_count, self.upper_letters_count
 
-    def format_data_for_letters_count_csv(self) -> list:
+    def format_data_for_letters_count_csv(self) -> None:
         self.data_for_letters_count_csv = []
         for key, value in self.upper_letters_count.items():
             key = key.lower()
@@ -58,7 +56,6 @@ class Counter:
             letter_percentage = round(self.letters_count[key] / self.total_number_of_letters * 100, 1)
             self.data_for_letters_count_csv.append([key, self.letters_count[key], 0, letter_percentage])
         self.data_for_letters_count_csv = sorted(self.data_for_letters_count_csv)
-        return self.data_for_letters_count_csv
 
     def write_words_count_csv(self) -> None:
         with open(f'hw_07_word_count.csv', 'w', encoding='UTF8', newline='') as csv_file:
