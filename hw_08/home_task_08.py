@@ -18,12 +18,11 @@ class JSONParser:
         self.read_json()
         self.create_feed_from_json()
 
-    def read_json(self):
+    def read_json(self) -> None:
         with open(self.filepath, 'r') as source_file:
             self.content = json.load(source_file)
-        return self.content
 
-    def create_feed_from_json(self):
+    def create_feed_from_json(self) -> None:
         feed_path = f'{os.getcwd()}/result.txt'
         with open(feed_path, 'a') as feed:
             for record in self.content:
