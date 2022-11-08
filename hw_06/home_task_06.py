@@ -15,7 +15,7 @@ import os
 import logging
 
 
-logging.basicConfig(level=logging.INFO, filename="../hw_06/hw_06.log", filemode="a",
+logging.basicConfig(level=logging.INFO, filename=f"{os.getcwd()}/log.log", filemode="a",
                     format="%(asctime)s %(message)s")
 
 
@@ -89,9 +89,20 @@ def create_news(raw_record):
     city = raw_record[-1]
 
     record = News(text_of_publication, city)
-
-    with open('hw_06_result.txt', 'a') as result:
+    filepath = f'{os.getcwd()}/result.txt'
+    with open(filepath, 'a') as result:
         result.write(record.create_news_publication())
+
+
+def get_expiration_date(expiration_date: str):
+    try:
+        expiration_date = datetime.strptime(expiration_date, '%d/%m/%Y')
+        expiration_date = expiration_date.date()
+        if expiration_date < date.today():
+            expiration_date = date.today()
+    except ValueError as e:
+        expiration_date = date.today()
+    return expiration_date
 
 
 def create_private_ad(raw_record):
@@ -110,15 +121,15 @@ def create_private_ad(raw_record):
         logging.info(f"Wrong date format at Record: {advertisement_text}")
 
     record = PrivateAd(advertisement_text, expiration_date)
-
-    with open('hw_06_result.txt', 'a') as result:
+    filepath = f'{os.getcwd()}/result.txt'
+    with open(filepath, 'a') as result:
         result.write(record.create_ad_publication())
 
 
 def add_greeting():
     record = Greetings()
-
-    with open('hw_06_result.txt', 'a') as result:
+    filepath = f'{os.getcwd()}/result.txt'
+    with open(filepath, 'a') as result:
         result.write(record.create_greeting())
 
 
