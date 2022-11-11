@@ -1,0 +1,50 @@
+2022-11-11 10:31:27,167 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 10:31:27,167 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 10:31:27,167 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:../hw_06/default_input.txt
+2022-11-11 10:31:27,168 Wrong type of record: ['']. input_file:../hw_06/default_input.txt
+2022-11-11 10:36:37,510 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 10:36:37,510 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 10:36:37,511 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:../input/input_06.txt
+2022-11-11 10:36:37,523 Wrong type of record: ['']. input_file:../input/input_06.txt
+2022-11-11 10:38:44,377 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 10:38:44,378 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 10:38:44,379 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:../input/input_06.txt
+2022-11-11 10:38:44,379 Wrong type of record: ['']. input_file:../input/input_06.txt
+2022-11-11 10:43:09,316 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 10:43:09,317 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 10:43:09,318 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:../input/input_06.txt
+2022-11-11 10:43:09,318 Wrong type of record: ['']. input_file:../input/input_06.txt
+2022-11-11 10:43:34,727 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 10:43:34,727 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 10:43:34,739 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:../input/input_06.txt
+2022-11-11 10:43:34,739 Wrong type of record: ['']. input_file:../input/input_06.txt
+2022-11-11 10:44:10,570 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 10:44:10,571 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 10:44:10,583 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:../input/input_06.txt
+2022-11-11 10:44:10,583 Wrong type of record: ['']. input_file:../input/input_06.txt
+2022-11-11 10:49:44,731 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 10:49:44,731 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 10:49:44,731 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:../input/input_06.txt
+2022-11-11 10:49:44,731 Wrong type of record: ['']. input_file:../input/input_06.txt
+2022-11-11 11:33:50,843 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 11:33:50,844 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 11:33:50,844 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:../input/input_06.txt
+2022-11-11 11:33:50,844 Wrong type of record: ['']. input_file:../input/input_06.txt
+2022-11-11 11:36:01,780 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 11:36:01,780 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 11:36:01,780 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:../input/input_06.txt
+2022-11-11 11:36:01,780 Wrong type of record: ['']. input_file:../input/input_06.txt
+2022-11-11 11:47:36,751 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 11:47:36,751 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 11:47:36,752 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:C:\Users\Iskandar_Khudzhamkul\Desktop\python_for_dqe/input/input_06.txt
+2022-11-11 11:47:36,752 Wrong type of record: ['']. input_file:C:\Users\Iskandar_Khudzhamkul\Desktop\python_for_dqe/input/input_06.txt
+2022-11-11 11:47:53,766 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 11:47:53,767 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 11:47:53,767 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:C:\Users\Iskandar_Khudzhamkul\Desktop\python_for_dqe/input/input_06.txt
+2022-11-11 11:47:53,767 Wrong type of record: ['']. input_file:C:\Users\Iskandar_Khudzhamkul\Desktop\python_for_dqe/input/input_06.txt
+2022-11-11 11:48:39,784 Wrong date format at Record: Ad with wrong date format.
+2022-11-11 11:48:39,784 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
+2022-11-11 11:48:39,785 Wrong type of record: ['Mistake', "I'm here by mistake"]. input_file:C:\Users\Iskandar_Khudzhamkul\Desktop\python_for_dqe/input/input_06.txt
+2022-11-11 11:48:39,785 Wrong type of record: ['']. input_file:C:\Users\Iskandar_Khudzhamkul\Desktop\python_for_dqe/input/input_06.txt
+2022-11-11 11:49:47,083 Wrong type of record: wrong_content/This message shouldn't be published!..
+2022-11-11 12:05:12,647 Wrong type of record: wrong_content/This message shouldn't be published!..

@@ -14,17 +14,17 @@ import xml.etree.ElementTree as ET
 
 
 class XMLParser:
-    def __init__(self, filepath='../hw_09/input_09.xml'):
+    def __init__(self, filepath='../input/input_09.xml'):
         self.filepath = filepath
         self.read_xml()
-        self.create_feed_from_xml()
+        self.write_feed_from_xml()
 
     def read_xml(self):
         xml_file = ET.parse(self.filepath)
         self.content = xml_file.getroot()
 
-    def create_feed_from_xml(self):
-        feed_path = f'{os.getcwd()}/result.txt'
+    def write_feed_from_xml(self):
+        feed_path = f'{os.getcwd()}/feed_writer_result.txt'
         with open(feed_path, 'a') as feed:
             for record in self.content:
                 record_type = record.find('record_type').text.lower()

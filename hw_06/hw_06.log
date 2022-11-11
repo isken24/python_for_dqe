@@ -1,7 +1,0 @@
-2022-10-31 10:51:52,537 Wrong date format at Record: Ad with wrong date format.
-2022-10-31 10:51:52,537 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-10-18
-2022-10-31 10:51:52,538 Wrong type of record: ['Mistake', "I'm here by mistake"].
-2022-10-31 10:51:52,538 Wrong type of record: [''].
-2022-10-31 10:52:12,706 Wrong date format at Record: Ad with wrong date format.
-2022-10-31 10:52:12,707 Outdated advertisement! Record: Ad from the past times.; expiration_date: 1990-01-01
-2022-10-31 10:52:12,707 Wrong type of record: [''].

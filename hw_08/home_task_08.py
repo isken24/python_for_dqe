@@ -5,7 +5,7 @@ Expand previous Homework 5/6/7 with additional class, which allow to provide rec
 3.Remove file if it was successfully processed"""
 
 
-from home_task_04_part_2 import text_normalization
+from hw_04.home_task_04_part_2 import text_normalization
 from hw_06.home_task_06 import News, PrivateAd, Greetings, get_expiration_date
 import os
 import logging
@@ -13,17 +13,17 @@ import json
 
 
 class JSONParser:
-    def __init__(self, filepath='../hw_08/input_08.json'):
+    def __init__(self, filepath='../input/input_08.json'):
         self.filepath = filepath
         self.read_json()
-        self.create_feed_from_json()
+        self.write_feed_from_json()
 
     def read_json(self) -> None:
         with open(self.filepath, 'r') as source_file:
             self.content = json.load(source_file)
 
-    def create_feed_from_json(self) -> None:
-        feed_path = f'{os.getcwd()}/result.txt'
+    def write_feed_from_json(self) -> None:
+        feed_path = f'{os.getcwd()}/feed_writer_result.txt'
         with open(feed_path, 'a') as feed:
             for record in self.content:
                 record_type = record['record_type'].lower()

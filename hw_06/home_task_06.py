@@ -15,16 +15,16 @@ import os
 import logging
 
 
-logging.basicConfig(level=logging.INFO, filename=f"{os.getcwd()}/log.log", filemode="a",
-                    format="%(asctime)s %(message)s")
+logging.basicConfig(level=logging.INFO, filename=f"{os.getcwd()}/logs/feed_writer.log",
+                    filemode="a", format="%(asctime)s %(message)s")
 
 
 class FileReader:
     def __init__(self, file_path=None):
         if file_path:
-            self.path = file_path       # Alternative file path: '../hw_06/alternative_input.txt'
+            self.path = file_path       # Alternative file path: '../hw_06/alt_input_06.txt'
         else:
-            self.path = '../hw_06/default_input.txt'
+            self.path = '../input/input_06.txt'
         with open(self.path, 'r') as input_file:
             self.content = input_file.read()
 
@@ -89,7 +89,7 @@ def create_news(raw_record):
     city = raw_record[-1]
 
     record = News(text_of_publication, city)
-    filepath = f'{os.getcwd()}/result.txt'
+    filepath = f'{os.getcwd()}/feed_writer_result.txt'
     with open(filepath, 'a') as result:
         result.write(record.create_news_publication())
 
@@ -121,20 +121,20 @@ def create_private_ad(raw_record):
         logging.info(f"Wrong date format at Record: {advertisement_text}")
 
     record = PrivateAd(advertisement_text, expiration_date)
-    filepath = f'{os.getcwd()}/result.txt'
+    filepath = f'{os.getcwd()}/feed_writer_result.txt'
     with open(filepath, 'a') as result:
         result.write(record.create_ad_publication())
 
 
 def add_greeting():
     record = Greetings()
-    filepath = f'{os.getcwd()}/result.txt'
+    filepath = f'{os.getcwd()}/feed_writer_result.txt'
     with open(filepath, 'a') as result:
         result.write(record.create_greeting())
 
 
-def main():
-    input_file = FileReader(input('Provide path to the input file:'))
+def write_feed_from_txt(filepath):
+    input_file = FileReader(filepath)
 
     for line in input_file.content.split(';'):
         line = line.strip().split(': ')
@@ -148,9 +148,9 @@ def main():
             add_greeting()
         else:
             if len(line) > 0:
-                logging.info(f"Wrong type of record: {line}.")
+                logging.info(f"Wrong type of record: {line}. input_file:{input_file.path}")
     os.remove(input_file.path)
 
 
 if __name__ == '__main__':
-    main()
+    write_feed_from_txt(input('Provide path to the input file:'))
