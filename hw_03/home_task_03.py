@@ -23,7 +23,7 @@ abstract = abstract.lower().replace(' iz', ' is')
 
 """
  Here we create 'result' variable to store resulting string. And 'sentence_from_last_words' to store sentence
- with last words of each existing sentence.
+ with last words_count of each existing sentence.
 """
 result = []
 string_result = ''
@@ -64,5 +64,5 @@ def count_number_of_spaces(result: str):
 
 if __name__ == '__main__':
     print(result)
-    print("Sentence from last words:", *sentence_from_last_words)
+    print("Sentence from last words_count:", *sentence_from_last_words)
     print(f"Number of Spaces : {count_number_of_spaces(result)}.")

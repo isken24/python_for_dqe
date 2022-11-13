@@ -24,7 +24,7 @@ def text_normalization(text: str) -> str:
 
     for index, row in enumerate(re.split('\n', delete_blank_lines_and_fix_grammar)):
         processed_text.append([])                       # For each line we use separate element of the list.
-        punctuation_mark = row[-1]                      # Punctuation mark to be added to each sentence (':' or '.')
+        punctuation_mark = '.'                      # row[-1] Punctuation mark to be added to each sentence (':' or '.')
         if index > 0 and not row.isspace():             # All sentence except first should be moved to the right.
             processed_text[index].append(' ')
         for sentence in re.split('\. ', row):           # Capitalizing sentences.
@@ -33,6 +33,15 @@ def text_normalization(text: str) -> str:
 
     normalized_text = '\n'.join([(' '.join([elem for elem in row])) for row in processed_text])
     return normalized_text
+
+
+def normalize_text(text:str) ->str:
+    processed_text = []
+    if text:
+        for sentence in text.split('.'):
+            processed_text.append(sentence.strip().capitalize())
+        normalized_text = '. '.join(processed_text)
+        return normalized_text
 
 
 def create_sentence_from_last_words(converted_result: str) -> str:
@@ -54,5 +63,5 @@ normalized_abstract = text_normalization(ABSTRACT)
 
 if __name__ == '__main__':
     print(normalized_abstract)
-    print(f'Sentence from last words: {create_sentence_from_last_words(normalized_abstract)}')
+    print(f'Sentence from last words_count: {create_sentence_from_last_words(normalized_abstract)}')
     print(f'Number of spaces in text: {count_number_of_spaces(normalized_abstract)}')

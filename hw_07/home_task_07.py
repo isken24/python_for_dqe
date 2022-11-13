@@ -7,6 +7,7 @@ Create two csv:
 CSVs should be recreated each time new record added.
 """
 
+import os
 import csv
 import re
 
@@ -58,12 +59,12 @@ class Counter:
         self.data_for_letters_count_csv = sorted(self.data_for_letters_count_csv)
 
     def write_words_count_csv(self) -> None:
-        with open(f'hw_07_word_count.csv', 'w', encoding='UTF8', newline='') as csv_file:
+        with open(f'{os.getcwd()}/word_count.csv', 'w', encoding='UTF8', newline='') as csv_file:
             writer = csv.writer(csv_file, delimiter='-')
             writer.writerows(self.words_count)
 
     def write_letter_count_csv(self) -> None:
-        with open('hw_07_letter_count.csv', 'w', encoding='UTF8', newline='') as csv_file:
+        with open(f'{os.getcwd()}/letter_count.csv', 'w', encoding='UTF8', newline='') as csv_file:
             fieldnames = ['letter', "count_all", "count_uppercase", "percentage"]
             writer = csv.writer(csv_file, delimiter=',')
             writer.writerows([fieldnames])
@@ -71,7 +72,7 @@ class Counter:
 
 
 if __name__ == '__main__':
-    content = file_reader('../hw_06/hw_06_result.txt')
+    content = file_reader('/hw_06/hw_06_result.txt')
 
     counter = Counter(content)
     counter.write_words_count_csv()
