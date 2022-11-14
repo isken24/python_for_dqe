@@ -1,0 +1,34 @@
+2022-11-11 23:47:52,477 Wrong type of record: wrong_content/This message shouldn't be published!..
+2022-11-12 00:56:11,155 Wrong type of record: wrong_content/This message shouldn't be published!..
+2022-11-12 00:58:21,701 Wrong type of record: wrong_content/This message shouldn't be published!..
+2022-11-13 15:40:50,826 Wrong type of record: wrong_content/This message shouldn't be published!..
+2022-11-14 10:40:10,811 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 10:42:06,062 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 10:49:07,206 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 11:35:28,266 Wrong type of record: ['Mistake', "I'm here by mistake"]/Ad from the past times
+2022-11-14 11:35:28,267 Wrong type of record: ['']/Ad from the past times
+2022-11-14 11:37:06,371 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 11:37:06,460 Wrong type of record: ['Mistake', "I'm here by mistake"]/Ad from the past times
+2022-11-14 11:37:06,460 Wrong type of record: ['']/Ad from the past times
+2022-11-14 11:40:14,600 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 11:41:11,013 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 11:55:03,732 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 11:56:52,705 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 11:57:31,435 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 12:00:56,301 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 12:00:56,356 Wrong type of record: ['\nAd', 'Very GOOD advertisement', '18/11/2022']/News. Exiting news. and even MORE exiting news
+2022-11-14 12:00:56,356 Wrong type of record: ['\nAd', 'aD With Wrong Date format', '18-10-2022']/News. Exiting news. and even MORE exiting news
+2022-11-14 12:00:56,356 Wrong type of record: ['\nAd', 'aD from tHe Past times', '18/10/1990']/News. Exiting news. and even MORE exiting news
+2022-11-14 12:00:56,356 Wrong type of record: ['\nGreeting']/News. Exiting news. and even MORE exiting news
+2022-11-14 12:00:56,356 Wrong type of record: ['\nMistake', "I'm here by mistake"]/News. Exiting news. and even MORE exiting news
+2022-11-14 12:00:56,357 Wrong type of record: ['\n']/News. Exiting news. and even MORE exiting news
+2022-11-14 12:03:31,882 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 12:05:02,131 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 12:05:02,223 Wrong type of record: ['Mistake', "I'm here by mistake"]/aD from tHe Past times
+2022-11-14 12:05:02,223 Wrong type of record: ['']/aD from tHe Past times
+2022-11-14 12:07:28,176 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 12:07:28,264 Wrong type of record: ['Mistake', "I'm here by mistake"]/Ad from the past times
+2022-11-14 12:07:28,264 Wrong type of record: ['']/Ad from the past times
+2022-11-14 12:15:44,059 Wrong type of record: wrong_content/This alternative message shouldn't be published!..
+2022-11-14 12:15:44,088 Wrong type of record: ['Mistake', "I'm here by mistake"]/Ad from the past times
+2022-11-14 12:15:44,088 Wrong type of record: ['']/Ad from the past times

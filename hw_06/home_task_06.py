@@ -52,16 +52,16 @@ class PrivateAd(Publication):
     def __init__(self, text_of_publication, expiration_date):
         super().__init__(text_of_publication)
         self.expiration_date = expiration_date
+        self.get_number_of_days_left()
 
     def get_number_of_days_left(self):
-        number_of_days_left = self.expiration_date - date.today()
-        number_of_days_left = number_of_days_left.days
-        return number_of_days_left
+        self.number_of_days_left = (self.expiration_date - date.today()).days
+        return self.number_of_days_left
 
     def create_ad_publication(self):
         ad_publication = f'Private ad_____________________________\n' \
                            f'{self.text_of_publication}\n' \
-                           f'Actual until: {self.expiration_date}, {self.get_number_of_days_left()} days left\n' \
+                           f'Actual until: {self.expiration_date}, {self.number_of_days_left} days left\n' \
                            f'_______________________________________\n\n'
         return ad_publication
 

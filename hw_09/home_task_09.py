@@ -7,10 +7,15 @@ Expand previous Homework 5/6/7/8 with additional class, which allow to provide r
 """
 
 
-from hw_04.home_task_04_part_2 import normalize_text
+from hw_04.home_task_04_part_2 import capitalize_text
 from hw_06.home_task_06 import News, PrivateAd, Greetings, get_expiration_date
 import os
 import xml.etree.ElementTree as ET
+import logging
+
+
+logging.basicConfig(level=logging.INFO, filename=f"{os.getcwd()}/logs/feed_writer.log",
+                    filemode="a", format="%(asctime)s %(message)s")
 
 
 class XMLParser:
@@ -28,9 +33,9 @@ class XMLParser:
         with open(feed_path, 'a') as feed:
             for record in self.content:
                 record_type = record.find('record_type').text.lower()
-                record_text = normalize_text(record.find('record_text').text)
+                record_text = capitalize_text(record.find('record_text').text)
                 if record_type == 'news':
-                    city = normalize_text(record.find('city').text)
+                    city = capitalize_text(record.find('city').text)
                     news = News(record_text, city)
                     feed.write(news.create_news_publication())
                 elif record_type == "ad":
@@ -40,6 +45,8 @@ class XMLParser:
                 elif record_type == "greeting":
                     greeting = Greetings()
                     feed.write(greeting.create_greeting())
+                else:
+                    logging.info(f"Wrong type of record: {record_type}. record_text:{record_text}")
             os.remove(self.filepath)
 
 
