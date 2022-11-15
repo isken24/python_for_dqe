@@ -149,7 +149,7 @@ def write_feed_from_txt(filepath):
         else:
             if len(line) > 0:
                 logging.info(f"Wrong type of record: {line}. input_file:{input_file.path}")
-    os.remove(input_file.path)
+    #os.remove(input_file.path)
 
 
 if __name__ == '__main__':

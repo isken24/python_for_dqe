@@ -47,7 +47,8 @@ class XMLParser:
                     feed.write(greeting.create_greeting())
                 else:
                     logging.info(f"Wrong type of record: {record_type}. record_text:{record_text}")
-            os.remove(self.filepath)
+            #os.remove(self.filepath)
+        
 
 
 if __name__ == '__main__':

@@ -41,7 +41,7 @@ class JSONParser:
                     feed.write(greeting.create_greeting())
                 else:
                     logging.info(f"Wrong type of record: {record_type}/{record_text}.")
-            os.remove(self.filepath)
+            #os.remove(self.filepath)
 
 
 if __name__ == '__main__':

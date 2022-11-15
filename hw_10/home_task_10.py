@@ -18,62 +18,64 @@ from hw_06.home_task_06 import News, PrivateAd, Greetings, get_expiration_date
 
 
 class DBWriter:
+    TXT = '.txt'
+    JSON = '.json'
+    XML = '.xml'
 
-    conn = sqlite3.connect('hw_10.db')
+    def __init__(self, filepath=f'../input/input_06.txt'):
+        self.filepath = filepath
+        self.file_name = os.path.basename(self.filepath)
+        self.create_tables()
+        self.write_feed_to_db()
+
+    conn = sqlite3.connect('feed.db')
     c = conn.cursor()
 
     def create_tables(self) -> None:
         with self.conn:
-            try:
-                self.c.execute("""CREATE TABLE news (
-                       news_text text,
-                       city text,
-                       publication_date text,
-                       unique (news_text, city, publication_date)
-                       )""")
-            except sqlite3.OperationalError as e:
-                print(e)
-            try:
-                self.c.execute("""CREATE TABLE ads (
-                               ad_text text,
-                               expiration_date text,
-                               number_of_days_left text,
-                               unique (ad_text, expiration_date)
-                               )""")
-            except sqlite3.OperationalError as e:
-                print(e)
-            try:
-                self.c.execute("""CREATE TABLE greetings (
-                               greeting text,
-                               unique (greeting)
-                               )""")
-            except sqlite3.OperationalError as e:
-                print(e)
+            self.c.execute("""CREATE TABLE if not exists News (
+                           id INTEGER PRIMARY KEY,
+                           news_text TEXT,
+                           city TEXT,
+                           publication_date TEXT,
+                           UNIQUE (news_text, city, publication_date)
+                           )""")
+            self.c.execute("""CREATE TABLE if not exists Ads (
+                           id INTEGER PRIMARY KEY,
+                           ad_text TEXT,
+                           expiration_date TEXT,
+                           number_of_days_left TEXT,
+                           UNIQUE (ad_text, expiration_date)
+                           )""")
+            self.c.execute("""CREATE TABLE if not exists Greetings (
+                           id INTEGER PRIMARY KEY,
+                           greeting TEXT,
+                           UNIQUE (greeting)
+                           )""")
 
     def insert_news(self, news) -> None:
         with self.conn:
+            row = (news.text_of_publication, news.city, news.publication_date)
             try:
-                self.c.execute("INSERT INTO news VALUES (:news_text, :city, :publication_date)",
-                          {'news_text': news.text_of_publication, 'city': news.city,
-                           'publication_date': news.publication_date})
+                self.c.execute("INSERT INTO News(news_text, city, publication_date) VALUES(?,?,?)", row)
             except sqlite3.IntegrityError as e:
                 print(e, f'news_text: {news.text_of_publication}, city: {news.city}, '
                          f'publication_date: {news.publication_date}')
 
     def insert_advertisement(self, ad) -> None:
         with self.conn:
+            row = (ad.text_of_publication, ad.expiration_date, ad.number_of_days_left)
             try:
-                self.c.execute("INSERT INTO ads VALUES (:ad_text, :expiration_date, :number_of_days_left)",
-                          {'ad_text': ad.text_of_publication, 'expiration_date': ad.expiration_date,
-                           'number_of_days_left': ad.number_of_days_left})
+                self.c.execute("INSERT INTO Ads(ad_text, expiration_date, number_of_days_left) VALUES(?,?,?)", row)
             except sqlite3.IntegrityError as e:
                 print(e, f'ad_text: {ad.text_of_publication} expiration_date: {ad.expiration_date}, '
                          f'number_of_days_left: {ad.number_of_days_left}')
 
     def insert_greeting(self, greeting) -> None:
         with self.conn:
+            row = (greeting,)
             try:
-                self.c.execute("INSERT INTO greetings VALUES (:greeting)", {'greeting': greeting})
+                self.c.execute("INSERT INTO Greetings(greeting) VALUES(?)", row)
             except sqlite3.IntegrityError as e:
                 print(e, f'greeting: {greeting}')
 
@@ -96,7 +98,7 @@ class DBWriter:
                     self.insert_greeting(greeting)
                 else:
                     logging.info(f"Wrong type of record: {record_type}/{record_text}.")
-        os.remove(input_json)
+        #os.remove(input_json)
 
     def update_db_from_xml(self, input_xml) -> None:
         xml_file = ET.parse(input_xml)
@@ -115,7 +117,7 @@ class DBWriter:
             elif record_type == "greeting":
                 greeting = Greetings().greeting
                 self.insert_greeting(greeting)
-        os.remove(input_xml)
+        #os.remove(input_xml)
 
     def update_db_from_txt(self, input_txt) -> None:
         with open(input_txt, 'r') as input_file:
@@ -140,18 +142,18 @@ class DBWriter:
                 else:
                     if len(line) > 0:
                         logging.info(f"Wrong type of record: {line}/{record_text}")
-        os.remove(input_txt)
+        #os.remove(input_txt)
+
+    def write_feed_to_db(self):
+        if self.file_name.lower().endswith(self.TXT):
+            self.update_db_from_txt(self.filepath)
+        elif self.file_name.lower().endswith(self.JSON):
+            self.update_db_from_json(self.filepath)
+        elif self.file_name.lower().endswith(self.XML):
+            self.update_db_from_xml(self.filepath)
+        else:
+            print("Wrong file format. Allowed file formats: TXT, JSON, XML")
 
 
 if __name__ == '__main__':
-
-    DBWriter().create_tables()
-    DBWriter().update_db_from_json('../input/alt_input_08.json')
-    DBWriter().update_db_from_xml('../input/alt_input_09.xml')
-    DBWriter().update_db_from_txt('../input/input_06.txt')
-
-"""
-    DBWriter.c.execute("Drop TABLE news")
-    DBWriter.c.execute("Drop TABLE ads")
-    DBWriter.c.execute("Drop TABLE greetings")
-"""
+    DBWriter()
