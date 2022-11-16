@@ -35,7 +35,7 @@ def text_normalization(text: str) -> str:
     return normalized_text
 
 
-def normalize_text(text:str) ->str:
+def capitalize_text(text:str) ->str:
     processed_text = []
     if text:
         for sentence in text.split('.'):
