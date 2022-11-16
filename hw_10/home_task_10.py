@@ -18,10 +18,6 @@ from hw_06.home_task_06 import News, PrivateAd, Greetings, get_expiration_date
 
 
 class DBWriter:
-    TXT = '.txt'
-    JSON = '.json'
-    XML = '.xml'
-
     def __init__(self, filepath=f'../input/input_06.txt'):
         self.filepath = filepath
         self.file_name = os.path.basename(self.filepath)
@@ -98,7 +94,7 @@ class DBWriter:
                     self.insert_greeting(greeting)
                 else:
                     logging.info(f"Wrong type of record: {record_type}/{record_text}.")
-        #os.remove(input_json)
+        os.remove(input_json)
 
     def update_db_from_xml(self, input_xml) -> None:
         xml_file = ET.parse(input_xml)
@@ -117,7 +113,7 @@ class DBWriter:
             elif record_type == "greeting":
                 greeting = Greetings().greeting
                 self.insert_greeting(greeting)
-        #os.remove(input_xml)
+        os.remove(input_xml)
 
     def update_db_from_txt(self, input_txt) -> None:
         with open(input_txt, 'r') as input_file:
@@ -142,14 +138,14 @@ class DBWriter:
                 else:
                     if len(line) > 0:
                         logging.info(f"Wrong type of record: {line}/{record_text}")
-        #os.remove(input_txt)
+        os.remove(input_txt)
 
     def write_feed_to_db(self):
-        if self.file_name.lower().endswith(self.TXT):
+        if self.file_name.lower().endswith('.txt'):
             self.update_db_from_txt(self.filepath)
-        elif self.file_name.lower().endswith(self.JSON):
+        elif self.file_name.lower().endswith('.json'):
             self.update_db_from_json(self.filepath)
-        elif self.file_name.lower().endswith(self.XML):
+        elif self.file_name.lower().endswith('.xml'):
             self.update_db_from_xml(self.filepath)
         else:
             print("Wrong file format. Allowed file formats: TXT, JSON, XML")

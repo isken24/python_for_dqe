@@ -56,7 +56,6 @@ class PrivateAd(Publication):
 
     def get_number_of_days_left(self):
         self.number_of_days_left = (self.expiration_date - date.today()).days
-        return self.number_of_days_left
 
     def create_ad_publication(self):
         ad_publication = f'Private ad_____________________________\n' \
